@@ -1,2 +1,2 @@
 # SGJ_W_2017
-public git repo for Gamelam Game
+public git repo for Gamejam Game
