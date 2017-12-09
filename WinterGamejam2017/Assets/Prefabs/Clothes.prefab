@@ -36,8 +36,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4781034305157904}
   - component: {fileID: 33830029390861304}
-  - component: {fileID: 54373408670222822}
-  - component: {fileID: 64682004232622216}
   m_Layer: 9
   m_Name: Clothes
   m_TagString: Untagged
