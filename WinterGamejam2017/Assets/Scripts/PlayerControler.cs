@@ -5,6 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CameraController))]
 public class PlayerControler : MonoBehaviour {
+        
+        public int clothes = 5;
+        public int clothesCounter
+        {
+                get
+                {
+                        return clothes;
+                }
+        }
         public float upwardThrowStrength = 10.0f;
         public float horizontalThrowStrength = 10.0f;
         public float kickback = 2.0f;
@@ -39,8 +48,12 @@ public class PlayerControler : MonoBehaviour {
 
         void shoot()
         {
-                if (Input.GetButtonDown("Fire1")){
-                        Instantiate(Clothes,transform.position + transform.forward, transform.rotation).GetComponent<Rigidbody>().velocity = transform.forward * horizontalThrowStrength+ Vector3.up * upwardThrowStrength;
+                if (Input.GetButtonDown("Fire1") && clothesCounter > 0){
+                        clothes--;
+                        GameObject fired = Instantiate(Clothes, transform.position + transform.forward, transform.rotation);
+                        fired.GetComponent<Rigidbody>().velocity = transform.forward * horizontalThrowStrength+ Vector3.up * upwardThrowStrength;
+                        fired.GetComponent<ClothesBehavior>().setDisplayedItem(5 - clothes);
+
                         mRigidbody.MovePosition(transform.position -transform.forward * kickback) ;
                 }
         }
