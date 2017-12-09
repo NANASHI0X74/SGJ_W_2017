@@ -64,6 +64,7 @@ public class AIFans : MonoBehaviour {
         //Vision Cone
         m_viewDirection = m_thisTransform.forward;
         Vector3 targetVector = m_target.position - m_thisTransform.position;
+                targetVector.y = 0;
        
         if (Vector3.Angle(targetVector, m_viewDirection) <= m_visionConeAngle && distance <= m_maxDistanceVC)
         {
