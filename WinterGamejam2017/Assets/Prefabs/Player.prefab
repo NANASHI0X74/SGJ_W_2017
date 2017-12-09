@@ -164,10 +164,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4807698909844908}
   - component: {fileID: 33470148767460320}
-  - component: {fileID: 136140140903295366}
   - component: {fileID: 195612943443604732}
   - component: {fileID: 114204326353409220}
   - component: {fileID: 54053114551490386}
+  - component: {fileID: 64004582509112212}
+  - component: {fileID: 114990354720599720}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -320,7 +321,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1969908579185544}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54053114551490386
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -336,6 +337,20 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &64004582509112212
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1969908579185544}
+  m_Material: {fileID: 13400000, guid: 36245ee03830e89458c815729a7e6f9e, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!95 &95055571655479344
 Animator:
   serializedVersion: 3
@@ -364,24 +379,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c4044c8837fdb34c9a53c77278203eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwStrength: 30
+  upwardThrowStrength: 10
+  horizontalThrowStrength: 20
+  kickback: 2
   Clothes: {fileID: 1718715103971524, guid: 08d239a281560654998221dc377f9129, type: 2}
-  floorMask: 0
   camRayLength: 500
   maxMoveSpeed: 100
---- !u!136 &136140140903295366
-CapsuleCollider:
+--- !u!114 &114990354720599720
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1969908579185544}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb98fe2c80380a04c9d2485c27f08c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camBias: 0.1
+  verticalDistance: 50
+  smooth: 0.9
+  followingCam: {fileID: 0}
 --- !u!195 &195612943443604732
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -390,7 +408,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1969908579185544}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.39
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
