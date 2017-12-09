@@ -10,11 +10,13 @@ public class PlayerControler : MonoBehaviour {
         public float maxMoveSpeed = 100.0f;
         Vector3 movement;
         private Rigidbody mRigidbody;
+        private Animator mAnimator;
 
 	    // Use this for initialization
 	    void Start () {
                 floorMask = LayerMask.GetMask("Floor");
                 mRigidbody = this.GetComponent<Rigidbody>();
+                mAnimator = GetComponentInChildren<Animator>();
 	    }
 	
 	    // Update is called once per frame
@@ -37,6 +39,7 @@ public class PlayerControler : MonoBehaviour {
 
                 // Move the player to it's current position plus the movement.
                 mRigidbody.MovePosition(transform.position + movement);
+                mAnimator.SetFloat("Speed", movement.magnitude);
         }
 
         void turn()
