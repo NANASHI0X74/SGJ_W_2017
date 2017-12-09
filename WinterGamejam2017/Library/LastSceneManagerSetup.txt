@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenese/Alisa.unity
+- path: Assets/Scenese/Freddy_map_prototype.unity
   isLoaded: 1
   isActive: 1
