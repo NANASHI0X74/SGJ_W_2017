@@ -21,6 +21,8 @@ public class AIFans : MonoBehaviour {
     private bool m_bVisible;
     public float m_fanSpeed;
 
+    private Vector3 m_recentDirection;
+
     public GameObject VC;
 
     // Use this for initialization
@@ -31,7 +33,8 @@ public class AIFans : MonoBehaviour {
         m_navComponent = this.GetComponent<NavMeshAgent>();
         m_navComponent.speed = m_fanSpeed;
         m_bVisible = false;
-
+        m_recentDirection = m_kontrollStack[Random.Range(0, m_kontrollStack.Length)].transform.position;
+        Debug.Log("New Destination: " + m_recentDirection);
 
     }
 	
@@ -39,29 +42,37 @@ public class AIFans : MonoBehaviour {
 	void Update () {
         float distance = Vector3.Distance(m_target.position, m_thisTransform.position);
         m_fanMovement = m_thisTransform.forward * m_fanSpeed;
-        Vector3 recentDirection = Vector3.zero;
-        
-
 
         if (m_bVisible)
         {
             //m_thisRigidbody.velocity = Vector3.zero;
+            m_recentDirection = m_target.transform.position;
             m_navComponent.SetDestination(m_target.transform.position);
-            //Debug.Log("visible!");
+            Debug.Log("visible!");
             Debug.Log("distance: " + distance);
+            Debug.Log("target position: " + m_target.position);
 
             if (distance <= m_deathDistance)
             {
-                m_fanSpeed = 0.0f;
-                m_navComponent.speed = 0.0f;
+                m_fanSpeed = 0.1f;
+                m_navComponent.speed = 0.1f;
                 //m_thisTransform.position = m_target.transform.position + new Vector3(0.5f, 0f, 0.5f);
                 m_thisRigidbody.freezeRotation = true;
-                //Debug.Log("stehen bleiben!");
+                Debug.Log("stehen bleiben!");
                 //m_navComponent.acceleration = 0f;
             }
         }
         else
         {
+            if (Vector3.Distance(m_recentDirection, m_thisTransform.position) <= 3)
+            {
+                int rand = Random.Range(0, m_kontrollStack.Length);
+                m_recentDirection = m_kontrollStack[rand].transform.position;
+                Debug.Log("New Destination: " + m_recentDirection);
+            }
+
+            m_navComponent.SetDestination(m_recentDirection);
+            /*
             for (int i = 0; i < m_kontrollStack.Length; i++)
             {
                 if (Vector3.Distance(m_kontrollStack[i].transform.position, m_thisTransform.position) <= 15)
@@ -70,6 +81,7 @@ public class AIFans : MonoBehaviour {
                     //m_kontrollStack[i].transform.position = recentDirection;
                 }
             }
+            */
             //m_navComponent.SetDestination(m_thisTransform.forward);
             m_thisRigidbody.velocity = m_fanMovement;
         }
@@ -90,6 +102,6 @@ public class AIFans : MonoBehaviour {
             m_bVisible = false;
         }
 
-            VC.GetComponent<Transform>().localScale = new Vector3(m_maxDistanceVC, m_maxDistanceVC, 1);
+        VC.GetComponent<Transform>().localScale = new Vector3(m_maxDistanceVC, m_maxDistanceVC, 1);
     }
 }
