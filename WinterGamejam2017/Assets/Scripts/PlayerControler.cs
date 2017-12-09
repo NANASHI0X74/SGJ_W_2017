@@ -4,8 +4,11 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerControler : MonoBehaviour {
-
-        public int floorMask;
+        public float upwardThrowStrength = 10.0f;
+        public float horizontalThrowStrength = 10.0f;
+        public float kickback = 2.0f;
+        public GameObject Clothes;
+        private int floorMask;
         public float camRayLength = 500.0f;
         public float maxMoveSpeed = 100.0f;
         Vector3 movement;
@@ -18,17 +21,27 @@ public class PlayerControler : MonoBehaviour {
                 mRigidbody = this.GetComponent<Rigidbody>();
                 mAnimator = GetComponentInChildren<Animator>();
 	    }
-	
-	    // Update is called once per frame
-	    void FixedUpdate () {
+
+        // Update is called once per frame
+        void FixedUpdate()
+        {
                 float h = Input.GetAxisRaw("Horizontal");
                 float v = Input.GetAxisRaw("Vertical");
 
                 // Move the player around the scene.
                 move(h, v);
                 turn();
+                shoot();
 
-	    }
+        }
+
+        void shoot()
+        {
+                if (Input.GetButtonDown("Fire1")){
+                        Instantiate(Clothes,transform.position + transform.forward, transform.rotation).GetComponent<Rigidbody>().velocity = transform.forward * horizontalThrowStrength+ Vector3.up * upwardThrowStrength;
+                        mRigidbody.MovePosition(transform.position -transform.forward * kickback) ;
+                }
+        }
 
         void move(float h, float v)
         {
@@ -40,6 +53,7 @@ public class PlayerControler : MonoBehaviour {
                 // Move the player to it's current position plus the movement.
                 mRigidbody.MovePosition(transform.position + movement);
                 mAnimator.SetFloat("Speed", movement.magnitude);
+                Debug.Log(movement.magnitude);
         }
 
         void turn()
