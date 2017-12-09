@@ -10,7 +10,8 @@ public class AIFans : MonoBehaviour {
     public float m_deathDistance;
     private Transform m_thisTransform;
     private Rigidbody m_thisRigidbody;
-    private Vector3 m_fanMovement;
+    public Vector3 m_fanMovement;
+    public GameObject[] m_kontrollStack;
 
     public Transform m_target;
     private NavMeshAgent m_navComponent;
@@ -46,15 +47,27 @@ public class AIFans : MonoBehaviour {
             //m_thisRigidbody.velocity = Vector3.zero;
             m_navComponent.SetDestination(m_target.transform.position);
             //Debug.Log("visible!");
+            Debug.Log("distance: " + distance);
 
             if (distance <= m_deathDistance)
             {
                 m_fanSpeed = 0.0f;
-                //m_thisRigidbody.velocity = new Vector3(0, 0, 0);
+                m_navComponent.speed = 0.0f;
+                //m_thisTransform.position = m_target.transform.position + new Vector3(0.5f, 0f, 0.5f);
+                m_thisRigidbody.freezeRotation = true;
+                //Debug.Log("stehen bleiben!");
+                //m_navComponent.acceleration = 0f;
             }
         }
         else
         {
+            for (int i = 0; i < m_kontrollStack.Length; i++)
+            {
+                if (Vector3.Distance(m_kontrollStack[i].transform.position, m_thisTransform.position) <= 10)
+                {
+                    m_navComponent.SetDestination(m_kontrollStack[i].transform.position);
+                }
+            }
             //m_navComponent.SetDestination(m_thisTransform.forward);
             m_thisRigidbody.velocity = m_fanMovement;
         }
@@ -64,6 +77,7 @@ public class AIFans : MonoBehaviour {
         //Vision Cone
         m_viewDirection = m_thisTransform.forward;
         Vector3 targetVector = m_target.position - m_thisTransform.position;
+                targetVector.y = 0;
        
         if (Vector3.Angle(targetVector, m_viewDirection) <= m_visionConeAngle && distance <= m_maxDistanceVC)
         {
