@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Rigidbody))]
 public class AIFans : MonoBehaviour {
 
     public float m_deathDistance;
