@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CameraController))]
 public class PlayerControler : MonoBehaviour {
         public float upwardThrowStrength = 10.0f;
         public float horizontalThrowStrength = 10.0f;
@@ -14,9 +15,10 @@ public class PlayerControler : MonoBehaviour {
         Vector3 movement;
         private Rigidbody mRigidbody;
         private Animator mAnimator;
-
+        private CameraController camController;
 	    // Use this for initialization
 	    void Start () {
+                camController = GetComponent<CameraController>();
                 floorMask = LayerMask.GetMask("Floor");
                 mRigidbody = this.GetComponent<Rigidbody>();
                 mAnimator = GetComponentInChildren<Animator>();
@@ -53,7 +55,6 @@ public class PlayerControler : MonoBehaviour {
                 // Move the player to it's current position plus the movement.
                 mRigidbody.MovePosition(transform.position + movement);
                 mAnimator.SetFloat("Speed", movement.magnitude);
-                Debug.Log(movement.magnitude);
         }
 
         void turn()
@@ -77,6 +78,10 @@ public class PlayerControler : MonoBehaviour {
 
                         // Set the player's rotation to this new rotation.
                         mRigidbody.MoveRotation(newRotation);
+                        camController.updateFollow(floorHit.point);
+                }else
+                {
+                        camController.updateFollow(transform.position);
                 }
         }
 }
