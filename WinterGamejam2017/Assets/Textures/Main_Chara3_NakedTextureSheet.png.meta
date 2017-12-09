@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: ca5b09ff72ec818479c4846eced2701a
-timeCreated: 1512821805
+guid: da334cfa15888304991f7dc503f21010
+timeCreated: 1512836053
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: CenterHead_Fan1
-    21300002: FanTextureSheet_Version1_1
-    21300004: RightShoulder_Fan1
-    21300006: RightArm_Fan1
-    21300008: LeftArm_Fan1
-    21300010: LeftShoulder_Fan1
-    21300012: RightShoe_Fan1
-    21300014: LeftShoe_Fan1
+    21300000: Main_Chara3_NakedTextureSheet_0
+    21300002: Main_Chara3_NakedTextureSheet_1
+    21300004: Main_Chara3_NakedTextureSheet_2
+    21300006: Main_Chara3_NakedTextureSheet_3
+    21300008: Main_Chara3_NakedTextureSheet_4
+    21300010: Main_Chara3_NakedTextureSheet_5
+    21300012: Main_Chara3_NakedTextureSheet_6
+    21300014: Main_Chara3_NakedTextureSheet_7
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -86,13 +86,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CenterHead_Fan1
+      name: Main_Chara3_NakedTextureSheet_0
       rect:
         serializedVersion: 2
         x: 16
-        y: 553
+        y: 552
         width: 405
-        height: 491
+        height: 492
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -100,27 +100,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: FanTextureSheet_Version1_1
+      name: Main_Chara3_NakedTextureSheet_1
       rect:
         serializedVersion: 2
-        x: 664
-        y: 1039
-        width: 12
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: RightShoulder_Fan1
-      rect:
-        serializedVersion: 2
-        x: 620
+        x: 616
         y: 784
-        width: 205
-        height: 253
+        width: 200
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,41 +114,55 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: RightArm_Fan1
+      name: Main_Chara3_NakedTextureSheet_2
       rect:
         serializedVersion: 2
         x: 78
-        y: 96
-        width: 105
-        height: 362
-      alignment: 9
-      pivot: {x: 0.5798186, y: 0.24996054}
+        y: 111
+        width: 94
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: LeftArm_Fan1
+      name: Main_Chara3_NakedTextureSheet_3
       rect:
         serializedVersion: 2
-        x: 310
-        y: 103
+        x: 318
+        y: 101
+        width: 108
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Main_Chara3_NakedTextureSheet_4
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 440
+        width: 188
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Main_Chara3_NakedTextureSheet_5
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 104
         width: 117
-        height: 358
-      alignment: 9
-      pivot: {x: 0.44269451, y: 0.21439222}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: LeftShoulder_Fan1
-      rect:
-        serializedVersion: 2
-        x: 632
-        y: 442
-        width: 195
-        height: 260
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,13 +170,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: RightShoe_Fan1
+      name: Main_Chara3_NakedTextureSheet_6
       rect:
         serializedVersion: 2
-        x: 564
-        y: 105
-        width: 122
-        height: 230
+        x: 861
+        y: 321
+        width: 6
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,13 +184,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: LeftShoe_Fan1
+      name: Main_Chara3_NakedTextureSheet_7
       rect:
         serializedVersion: 2
-        x: 837
+        x: 836
         y: 107
-        width: 111
-        height: 236
+        width: 109
+        height: 202
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
