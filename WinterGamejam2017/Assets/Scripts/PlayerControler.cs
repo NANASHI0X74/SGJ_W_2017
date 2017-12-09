@@ -3,32 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CameraController))]
 public class PlayerControler : MonoBehaviour {
-
-        public int floorMask;
+        public float upwardThrowStrength = 10.0f;
+        public float horizontalThrowStrength = 10.0f;
+        public float kickback = 2.0f;
+        public GameObject Clothes;
+        private int floorMask;
         public float camRayLength = 500.0f;
         public float maxMoveSpeed = 100.0f;
         Vector3 movement;
         private Rigidbody mRigidbody;
         private Animator mAnimator;
-
+        private CameraController camController;
 	    // Use this for initialization
 	    void Start () {
+                camController = GetComponent<CameraController>();
                 floorMask = LayerMask.GetMask("Floor");
                 mRigidbody = this.GetComponent<Rigidbody>();
                 mAnimator = GetComponentInChildren<Animator>();
 	    }
-	
-	    // Update is called once per frame
-	    void FixedUpdate () {
+
+        // Update is called once per frame
+        void FixedUpdate()
+        {
                 float h = Input.GetAxisRaw("Horizontal");
                 float v = Input.GetAxisRaw("Vertical");
 
                 // Move the player around the scene.
                 move(h, v);
                 turn();
+                shoot();
 
-	    }
+        }
+
+        void shoot()
+        {
+                if (Input.GetButtonDown("Fire1")){
+                        Instantiate(Clothes,transform.position + transform.forward, transform.rotation).GetComponent<Rigidbody>().velocity = transform.forward * horizontalThrowStrength+ Vector3.up * upwardThrowStrength;
+                        mRigidbody.MovePosition(transform.position -transform.forward * kickback) ;
+                }
+        }
 
         void move(float h, float v)
         {
@@ -63,6 +78,10 @@ public class PlayerControler : MonoBehaviour {
 
                         // Set the player's rotation to this new rotation.
                         mRigidbody.MoveRotation(newRotation);
+                        camController.updateFollow(floorHit.point);
+                }else
+                {
+                        camController.updateFollow(transform.position);
                 }
         }
 }
