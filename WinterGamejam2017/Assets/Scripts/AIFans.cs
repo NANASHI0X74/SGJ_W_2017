@@ -39,6 +39,7 @@ public class AIFans : MonoBehaviour {
 	void Update () {
         float distance = Vector3.Distance(m_target.position, m_thisTransform.position);
         m_fanMovement = m_thisTransform.forward * m_fanSpeed;
+        Vector3 recentDirection = Vector3.zero;
         
 
 
@@ -63,9 +64,10 @@ public class AIFans : MonoBehaviour {
         {
             for (int i = 0; i < m_kontrollStack.Length; i++)
             {
-                if (Vector3.Distance(m_kontrollStack[i].transform.position, m_thisTransform.position) <= 10)
+                if (Vector3.Distance(m_kontrollStack[i].transform.position, m_thisTransform.position) <= 15)
                 {
                     m_navComponent.SetDestination(m_kontrollStack[i].transform.position);
+                    //m_kontrollStack[i].transform.position = recentDirection;
                 }
             }
             //m_navComponent.SetDestination(m_thisTransform.forward);
