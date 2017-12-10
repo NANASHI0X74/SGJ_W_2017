@@ -38,7 +38,7 @@ public class PlayerControler : MonoBehaviour {
                 mAnimator = GetComponentInChildren<Animator>();
 	    }
 
-        void giveClothes()
+        public void giveClothes()
         {
                 if (clothes < 5)
                 {

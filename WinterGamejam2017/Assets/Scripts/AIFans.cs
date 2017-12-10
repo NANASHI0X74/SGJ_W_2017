@@ -25,7 +25,9 @@ public class AIFans : MonoBehaviour
     private bool m_bVisible;
     public float m_fanSpeed;
 
-    public List<Transform> m_clothesList;
+    public float baseSpeed = 4.0f;
+    public float speedIncrease = 0.7f;
+    private bool m_bIsChasingClothing;
 
     //private Vector3 m_recentDirection;
 
