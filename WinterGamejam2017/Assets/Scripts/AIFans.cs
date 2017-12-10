@@ -82,6 +82,7 @@ public class AIFans : MonoBehaviour
             {
                 m_navComponent.speed = 0.0f;
                 m_thisRigidbody.freezeRotation = true;
+                SceneManager.LoadScene("Death Screen");
             }
         }
 

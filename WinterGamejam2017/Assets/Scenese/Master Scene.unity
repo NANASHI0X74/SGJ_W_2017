@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -88,7 +88,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: c8cc428adaaec4042ae2bd82512c6332,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -97,21 +98,21 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.4
     agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentSlope: 0
+    agentClimb: 0.1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.13333334
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: d40c3ed712812994c81b358fc653bca7, type: 2}
 --- !u!1 &43980851
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +376,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4807698909844908, guid: 25fd67789e1071a45b38387c27bd0fbb, type: 2}
       propertyPath: m_RootOrder
-      value: 35
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 4807698909844908, guid: 25fd67789e1071a45b38387c27bd0fbb, type: 2}
       propertyPath: m_LocalScale.x
@@ -397,7 +398,7 @@ Prefab:
     - target: {fileID: 114204326353409220, guid: 25fd67789e1071a45b38387c27bd0fbb,
         type: 2}
       propertyPath: maxMoveSpeed
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114204326353409220, guid: 25fd67789e1071a45b38387c27bd0fbb,
         type: 2}
@@ -408,6 +409,11 @@ Prefab:
         type: 2}
       propertyPath: upwardThrowStrength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204326353409220, guid: 25fd67789e1071a45b38387c27bd0fbb,
+        type: 2}
+      propertyPath: kickback
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25fd67789e1071a45b38387c27bd0fbb, type: 2}
@@ -1518,7 +1524,7 @@ Transform:
   m_LocalScale: {x: -11.1, y: 10, z: 7.7350006}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 34
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1157515184
 GameObject:
@@ -1641,7 +1647,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4309523323050816, guid: b6232aa0d5b76364ab2442bda6e5e5f5, type: 2}
       propertyPath: m_RootOrder
-      value: 32
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 135749067536314858, guid: b6232aa0d5b76364ab2442bda6e5e5f5,
         type: 2}
@@ -2486,7 +2492,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4766385623525366, guid: 675ddf61e2e378b4e9f244392b77f0d9, type: 2}
       propertyPath: m_RootOrder
-      value: 36
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 114947998881871942, guid: 675ddf61e2e378b4e9f244392b77f0d9,
         type: 2}
@@ -2958,7 +2964,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1971797610
 GameObject:
