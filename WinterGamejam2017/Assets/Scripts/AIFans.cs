@@ -54,8 +54,6 @@ public class AIFans : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Clothes List: " + m_clothesList.Count);
-
         float distance = Vector3.Distance(m_target.position, m_thisTransform.position);
         m_fanMovement = m_thisTransform.forward * m_fanSpeed;
 
@@ -63,6 +61,7 @@ public class AIFans : MonoBehaviour
         {
             m_clothesList.Add(m_pc.m_latestClothes.transform);
             m_pc.m_bHasFired = false;
+            Debug.Log("Clothes List: " + m_clothesList.Count);
         }
 
         if (m_bVisible)

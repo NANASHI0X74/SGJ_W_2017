@@ -1519,6 +1519,16 @@ Prefab:
       propertyPath: maxMoveSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114204326353409220, guid: 25fd67789e1071a45b38387c27bd0fbb,
+        type: 2}
+      propertyPath: horizontalThrowStrength
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204326353409220, guid: 25fd67789e1071a45b38387c27bd0fbb,
+        type: 2}
+      propertyPath: upwardThrowStrength
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25fd67789e1071a45b38387c27bd0fbb, type: 2}
   m_IsPrefabParent: 0
@@ -2702,7 +2712,7 @@ GameObject:
   - component: {fileID: 1853142361}
   - component: {fileID: 1853142360}
   - component: {fileID: 1853142359}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
