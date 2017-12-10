@@ -53,12 +53,16 @@ public class PlayerControler : MonoBehaviour {
         void shoot()
         {
                 if (Input.GetButtonDown("Fire1") && clothesCounter > 0){
-                        m_bHasFired = true;
+                        
+                        
                         clothes--;
                         GameObject fired = Instantiate(Clothes, transform.position + transform.forward, transform.rotation);
+                        Debug.Log("latest clothing: " + fired);
                         fired.GetComponent<Rigidbody>().velocity = transform.forward * horizontalThrowStrength+ Vector3.up * upwardThrowStrength;
                         fired.GetComponent<ClothesBehavior>().setDisplayedItem(5 - clothes);
+            
                         m_latestClothes = fired;
+                        m_bHasFired = true;
 
                         mRigidbody.MovePosition(transform.position -transform.forward * kickback) ;
                 }

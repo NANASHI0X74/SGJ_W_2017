@@ -10,7 +10,7 @@ public class FansSpawn : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("FanSpawning", 0.5f, 0.5f);
+        InvokeRepeating("FanSpawning", 0.5f, 5.0f);
     }
 	
 	// Update is called once per frame

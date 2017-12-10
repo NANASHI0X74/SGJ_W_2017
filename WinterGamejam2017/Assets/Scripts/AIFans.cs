@@ -26,7 +26,7 @@ public class AIFans : MonoBehaviour
     public float m_fanSpeed;
     private bool m_bIsChasingClothing;
 
-    public List<Transform> m_clothesList = new List<Transform>();
+    public List<Transform> m_clothesList;
 
     private Vector3 m_recentDirection;
 
@@ -54,12 +54,15 @@ public class AIFans : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Clothes List: " + m_clothesList.Count);
+
         float distance = Vector3.Distance(m_target.position, m_thisTransform.position);
         m_fanMovement = m_thisTransform.forward * m_fanSpeed;
 
         if (m_pc.m_bHasFired)
         {
             m_clothesList.Add(m_pc.m_latestClothes.transform);
+            m_pc.m_bHasFired = false;
         }
 
         if (m_bVisible)
@@ -73,8 +76,8 @@ public class AIFans : MonoBehaviour
 
             if (distance <= m_deathDistance)
             {
-                m_fanSpeed = distance;
-                m_navComponent.speed = distance;
+                m_fanSpeed = 0.0f;
+                m_navComponent.speed = 0.0f;
                 //m_thisTransform.position = m_target.transform.position + new Vector3(0.5f, 0f, 0.5f);
                 m_thisRigidbody.freezeRotation = true;
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -91,6 +94,7 @@ public class AIFans : MonoBehaviour
                 {
                     if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_maxDistanceVC)
                     {
+                        m_target = m_clothesList[i];
                         m_bIsChasingClothing = true;
                         m_recentDirection = m_clothesList[i].position;
                         if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_deathDistance)
