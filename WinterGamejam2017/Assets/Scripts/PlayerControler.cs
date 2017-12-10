@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(CameraController))]
 public class PlayerControler : MonoBehaviour {
 
+        public AudioClip running;
+        public AudioClip breathing;
         private AudioSource mAudioSource;
         private int clothes = 5;
         public int clothesCounter
@@ -16,6 +18,8 @@ public class PlayerControler : MonoBehaviour {
                         return clothes;
                 }
         }
+        public bool m_bHasFired;
+        GameObject m_latestClothes;
         public Transform activePlayer;
         public float upwardThrowStrength = 10.0f;
         public float horizontalThrowStrength = 10.0f;
@@ -28,8 +32,9 @@ public class PlayerControler : MonoBehaviour {
         private Rigidbody mRigidbody;
         private Animator mAnimator;
         private CameraController camController;
-        public bool m_bHasFired;
-        public GameObject m_latestClothes;
+
+        public List<GameObject> m_clothingList;
+        
 	    // Use this for initialization
 	    void Start () {
                 camController = GetComponent<CameraController>();
@@ -78,8 +83,9 @@ public class PlayerControler : MonoBehaviour {
                         GameObject fired = Instantiate(Clothes, transform.position + transform.forward, transform.rotation);
                         fired.GetComponent<Rigidbody>().velocity = transform.forward * horizontalThrowStrength+ Vector3.up * upwardThrowStrength;
                         fired.GetComponent<ClothesBehavior>().setDisplayedItem(5 - clothes);
-                        m_latestClothes = fired;
-                        m_bHasFired = true;
+
+                        m_clothingList.Add(fired);
+                        StartCoroutine("deleteClothing", fired);
 
                         mRigidbody.MovePosition(transform.position -transform.forward * kickback) ;
                         switchRightModelIn();
@@ -135,5 +141,11 @@ public class PlayerControler : MonoBehaviour {
                         camController.updateFollow(transform.position);
                 }
         }
+
+    public IEnumerator deleteClothing(GameObject clothing)
+    {
+        yield return new WaitForSeconds(15f);
+        m_clothingList.Remove(clothing);
+    }
 }
 
