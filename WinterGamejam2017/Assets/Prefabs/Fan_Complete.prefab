@@ -438,7 +438,8 @@ MonoBehaviour:
   m_visionConeAngle: 140
   m_maxDistanceVC: 15
   m_fanSpeed: 4
-  m_clothesList: []
+  baseSpeed: 4
+  speedIncrease: 0.7
   m_pc: {fileID: 0}
 --- !u!136 &136076819927084146
 CapsuleCollider:
