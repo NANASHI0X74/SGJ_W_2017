@@ -25,6 +25,7 @@ public class CooldownBar : MonoBehaviour
         {
             counter = 0;
             coolingDown = false;
+            bar.fillAmount = 0f;
 
         }
     }
