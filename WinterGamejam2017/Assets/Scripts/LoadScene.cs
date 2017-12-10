@@ -8,6 +8,6 @@ public class LoadScene : MonoBehaviour {
 
     public void OnMouseClick(string sceneName)
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        SceneManager.LoadScene("Master Scene");
     }
 }
