@@ -149,7 +149,7 @@ MonoBehaviour:
   - {fileID: 1204899878287386, guid: b6232aa0d5b76364ab2442bda6e5e5f5, type: 2}
   - {fileID: 1149112266917518, guid: b6232aa0d5b76364ab2442bda6e5e5f5, type: 2}
   - {fileID: 1200248471602202, guid: b6232aa0d5b76364ab2442bda6e5e5f5, type: 2}
-  m_target: {fileID: 4872296207112436, guid: 89f56527f73941f4dbd19437abb56608, type: 2}
+  m_target: {fileID: 4106910277842336, guid: b6232aa0d5b76364ab2442bda6e5e5f5, type: 2}
   m_visionConeAngle: 180
   m_maxDistanceVC: 1
   m_fanSpeed: 10

@@ -24,8 +24,9 @@ public class AIFans : MonoBehaviour
     public float m_maxDistanceVC;
     private bool m_bVisible;
     public float m_fanSpeed;
+    private bool m_bIsChasingClothing;
 
-    public List<Transform> m_clothesList = new List<Transform>();
+    public List<Transform> m_clothesList;
 
     private Vector3 m_recentDirection;
 
@@ -42,6 +43,7 @@ public class AIFans : MonoBehaviour
         m_navComponent = this.GetComponent<NavMeshAgent>();
         m_navComponent.speed = m_fanSpeed;
         m_bVisible = false;
+        m_bIsChasingClothing = false;
         m_recentDirection = m_kontrollStack[Random.Range(0, m_kontrollStack.Length)].transform.position;
         //Debug.Log("New Destination: " + m_recentDirection);
 
@@ -55,11 +57,11 @@ public class AIFans : MonoBehaviour
         float distance = Vector3.Distance(m_target.position, m_thisTransform.position);
         m_fanMovement = m_thisTransform.forward * m_fanSpeed;
 
-        Debug.Log(m_target.gameObject.name);
-
         if (m_pc.m_bHasFired)
         {
             m_clothesList.Add(m_pc.m_latestClothes.transform);
+            m_pc.m_bHasFired = false;
+            Debug.Log("Clothes List: " + m_clothesList.Count);
         }
 
         if (m_bVisible)
@@ -73,8 +75,8 @@ public class AIFans : MonoBehaviour
 
             if (distance <= m_deathDistance)
             {
-                m_fanSpeed = distance;
-                m_navComponent.speed = distance;
+                m_fanSpeed = 0.0f;
+                m_navComponent.speed = 0.0f;
                 //m_thisTransform.position = m_target.transform.position + new Vector3(0.5f, 0f, 0.5f);
                 m_thisRigidbody.freezeRotation = true;
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -85,30 +87,37 @@ public class AIFans : MonoBehaviour
 
         else
         {
-            for (int i = 0; i < m_clothesList.Count; i++)
+            if (m_clothesList.Count > 0)
             {
-                if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_maxDistanceVC && m_clothesList != null)
+                for (int i = 0; i < m_clothesList.Count; i++)
                 {
-                    m_target.position = m_clothesList[i].position;
-                    if (distance <= m_deathDistance)
+                    if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_maxDistanceVC)
                     {
-                        m_fanSpeed = 0.1f;
-                        m_navComponent.speed = 0.1f;
-                        m_thisRigidbody.freezeRotation = true;
+                        m_target = m_clothesList[i];
+                        m_bIsChasingClothing = true;
+                        m_recentDirection = m_clothesList[i].position;
+                        if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_deathDistance)
+                        {
+                            m_fanSpeed = 0.1f;
+                            m_navComponent.speed = 0.1f;
+                            m_thisRigidbody.freezeRotation = true;
+                        }
                     }
                 }
+            }
+
+            if (!m_bIsChasingClothing)
+            {
                 if (Vector3.Distance(m_recentDirection, m_thisTransform.position) <= 3)
                 {
                     int rand = Random.Range(0, m_kontrollStack.Length);
                     m_recentDirection = m_kontrollStack[rand].transform.position;
                     //Debug.Log("New Destination: " + m_recentDirection);
                 }
-
-                m_navComponent.SetDestination(m_recentDirection);
-                m_thisRigidbody.velocity = m_fanMovement;
             }
 
-
+            m_navComponent.SetDestination(m_recentDirection);
+            m_thisRigidbody.velocity = m_fanMovement;
 
             //Vision Cone
 
@@ -131,3 +140,5 @@ public class AIFans : MonoBehaviour
         }
     }
 }
+
+

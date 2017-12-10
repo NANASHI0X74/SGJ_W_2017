@@ -1262,7 +1262,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.214361
+  orthographic size: 9.526303
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1284,7 +1284,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 693788971}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -18.5, y: 10, z: -2.3}
+  m_LocalPosition: {x: -18.2, y: 10, z: -2.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1517,7 +1517,17 @@ Prefab:
     - target: {fileID: 114204326353409220, guid: 25fd67789e1071a45b38387c27bd0fbb,
         type: 2}
       propertyPath: maxMoveSpeed
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204326353409220, guid: 25fd67789e1071a45b38387c27bd0fbb,
+        type: 2}
+      propertyPath: horizontalThrowStrength
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114204326353409220, guid: 25fd67789e1071a45b38387c27bd0fbb,
+        type: 2}
+      propertyPath: upwardThrowStrength
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25fd67789e1071a45b38387c27bd0fbb, type: 2}
@@ -2702,7 +2712,7 @@ GameObject:
   - component: {fileID: 1853142361}
   - component: {fileID: 1853142360}
   - component: {fileID: 1853142359}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
