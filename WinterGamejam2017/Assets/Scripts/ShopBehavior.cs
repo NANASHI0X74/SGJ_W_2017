@@ -29,15 +29,20 @@ public class ShopBehavior : MonoBehaviour {
                 {
                         providing = true;
                 }
-                if (timerGiveDelay <= 0)
+                if (timerActive <= 0)
                 {
-                        timerGiveDelay = giveDelay;
+                        StopCoroutine(giveClothes());
+                }else
+                {
+                        timerActive -= Time.deltaTime;
                 }
+
         }
 
         void OnTriggerEnter(Collider Other)
         {
                 if (Other.gameObject.tag == "Player" && providing) {
+                        timerActive = active;
                         player = Other.GetComponent<PlayerControler>();
                         player.giveClothes();
                         StartCoroutine(giveClothes());
