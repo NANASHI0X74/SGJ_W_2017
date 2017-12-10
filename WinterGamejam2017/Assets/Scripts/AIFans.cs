@@ -24,6 +24,8 @@ public class AIFans : MonoBehaviour
     public float m_maxDistanceVC;
     private bool m_bVisible;
     public float m_fanSpeed;
+        public float baseSpeed = 4.0f;
+        public float speedIncrease = 0.7f;
     private bool m_bIsChasingClothing;
 
     public List<Transform> m_clothesList;
@@ -54,6 +56,7 @@ public class AIFans : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+                m_fanSpeed = (5 - m_pc.clothesCounter) * speedIncrease + baseSpeed;
         float distance = Vector3.Distance(m_target.position, m_thisTransform.position);
         m_fanMovement = m_thisTransform.forward * m_fanSpeed;
 
