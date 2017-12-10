@@ -17,7 +17,7 @@ public class PlayerControler : MonoBehaviour {
         public float upwardThrowStrength = 10.0f;
         public float horizontalThrowStrength = 10.0f;
         public float kickback = 2.0f;
-        public GameObject Clothes;
+        public SpriteRenderer Clothes;
         private int floorMask;
         public float camRayLength = 500.0f;
         public float maxMoveSpeed = 100.0f;
@@ -55,7 +55,7 @@ public class PlayerControler : MonoBehaviour {
                 if (Input.GetButtonDown("Fire1") && clothesCounter > 0){
                         m_bHasFired = true;
                         clothes--;
-                        GameObject fired = Instantiate(Clothes, transform.position + transform.forward, transform.rotation);
+                        SpriteRenderer fired = Instantiate(Clothes, transform.position + transform.forward, transform.rotation);
                         fired.GetComponent<Rigidbody>().velocity = transform.forward * horizontalThrowStrength+ Vector3.up * upwardThrowStrength;
                         fired.GetComponent<ClothesBehavior>().setDisplayedItem(5 - clothes);
                         m_latestClothes = fired;
