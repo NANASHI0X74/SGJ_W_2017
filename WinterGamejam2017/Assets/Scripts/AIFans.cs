@@ -85,7 +85,7 @@ public class AIFans : MonoBehaviour
                 {
                     if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_maxDistanceVC)
                     {
-                        m_target = m_clothesList[i];
+                        //m_target = m_clothesList[i];
                         m_bIsChasingClothing = true;
                         m_recentDirection = m_clothesList[i].position;
                         if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_deathDistance)
@@ -107,6 +107,7 @@ public class AIFans : MonoBehaviour
                     //Debug.Log("New Destination: " + m_recentDirection);
                 }
             }
+        }
 
             m_navComponent.SetDestination(m_recentDirection);
             m_thisRigidbody.velocity = m_fanMovement;
@@ -129,7 +130,7 @@ public class AIFans : MonoBehaviour
             //GameObject neuerVC = GameObject.Instantiate(VC);
             //neuerVC.transform.position = m_thisTransform.position;
             //VC.GetComponent<Transform>().localScale = new Vector3(m_maxDistanceVC, m_maxDistanceVC, 1);
-        }
+        
     }
 }
 
