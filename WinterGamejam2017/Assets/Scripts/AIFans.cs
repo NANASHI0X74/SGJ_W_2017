@@ -83,7 +83,12 @@ public class AIFans : MonoBehaviour {
                 if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_maxDistanceVC)
                 {
                     m_target.position = m_clothesList[i].position;
-                }
+                    if (distance <= m_deathDistance)
+                    {
+                        m_fanSpeed = 0.1f;
+                        m_navComponent.speed = 0.1f;
+                        m_thisRigidbody.freezeRotation = true;
+                    }
             }
             if (Vector3.Distance(m_recentDirection, m_thisTransform.position) <= 3)
             {
