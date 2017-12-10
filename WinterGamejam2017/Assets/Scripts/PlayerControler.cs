@@ -14,6 +14,7 @@ public class PlayerControler : MonoBehaviour {
                         return clothes;
                 }
         }
+        public GameObject activePlayer;
         public float upwardThrowStrength = 10.0f;
         public float horizontalThrowStrength = 10.0f;
         public float kickback = 2.0f;
@@ -32,6 +33,11 @@ public class PlayerControler : MonoBehaviour {
                 mRigidbody = this.GetComponent<Rigidbody>();
                 mAnimator = GetComponentInChildren<Animator>();
 	    }
+
+        void refillClothes()
+        {
+                clothes = 5;
+        }
 
         // Update is called once per frame
         void FixedUpdate()

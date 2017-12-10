@@ -144,7 +144,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: eb1c462b607317e4fbdfa7daa4fdfe87, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -367,7 +367,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4807698909844908, guid: 25fd67789e1071a45b38387c27bd0fbb, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.064953e-17
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4807698909844908, guid: 25fd67789e1071a45b38387c27bd0fbb, type: 2}
       propertyPath: m_LocalPosition.z
@@ -393,6 +393,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114990354720599720, guid: 25fd67789e1071a45b38387c27bd0fbb,
+        type: 2}
+      propertyPath: followingCam
+      value: 
+      objectReference: {fileID: 2044065663}
     - target: {fileID: 1969908579185544, guid: 25fd67789e1071a45b38387c27bd0fbb, type: 2}
       propertyPath: m_Name
       value: Player (1)
