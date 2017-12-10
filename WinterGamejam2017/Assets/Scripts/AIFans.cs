@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 public class AIFans : MonoBehaviour {
@@ -54,10 +55,11 @@ public class AIFans : MonoBehaviour {
 
             if (distance <= m_deathDistance)
             {
-                m_fanSpeed = 0.1f;
-                m_navComponent.speed = 0.1f;
+                m_fanSpeed = distance;
+                m_navComponent.speed = distance;
                 //m_thisTransform.position = m_target.transform.position + new Vector3(0.5f, 0f, 0.5f);
                 m_thisRigidbody.freezeRotation = true;
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 //Debug.Log("stehen bleiben!");
                 //m_navComponent.acceleration = 0f;
             }

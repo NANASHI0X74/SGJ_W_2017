@@ -5,6 +5,7 @@ using UnityEngine;
 public class FansSpawn : MonoBehaviour {
 
     public GameObject fanW;
+    public Transform target;
     public Vector3 offset;
 
 	// Use this for initialization
@@ -21,6 +22,7 @@ public class FansSpawn : MonoBehaviour {
     public void FanSpawning()
     {
         fanW.transform.position = this.transform.position + offset;
+        fanW.GetComponent<AIFans>().m_target = target;
         GameObject neuerFan = GameObject.Instantiate(fanW);
     }
 }
