@@ -66,22 +66,14 @@ public class AIFans : MonoBehaviour
 
         if (m_bVisible)
         {
-            //m_thisRigidbody.velocity = Vector3.zero;
             m_recentDirection = m_target.transform.position;
             m_navComponent.SetDestination(m_target.transform.position);
-            //Debug.Log("visible!");
-            //Debug.Log("distance: " + distance);
-            //Debug.Log("target position: " + m_target.position);
 
             if (distance <= m_deathDistance)
             {
                 m_fanSpeed = 0.0f;
                 m_navComponent.speed = 0.0f;
-                //m_thisTransform.position = m_target.transform.position + new Vector3(0.5f, 0f, 0.5f);
                 m_thisRigidbody.freezeRotation = true;
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                //Debug.Log("stehen bleiben!");
-                //m_navComponent.acceleration = 0f;
             }
         }
 
