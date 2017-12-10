@@ -22,7 +22,7 @@ public class FansSpawn : MonoBehaviour {
     public void FanSpawning()
     {
         fanW.transform.position = this.transform.position + offset;
-        fanW.GetComponent<AIFans>().m_target = player.transform;
+        //fanW.GetComponent<AIFans>().m_target = player.transform;
         fanW.GetComponent<AIFans>().m_pc = player.GetComponent<PlayerControler>();
         GameObject neuerFan = GameObject.Instantiate(fanW);
         neuerFan.transform.position = fanW.transform.position;
