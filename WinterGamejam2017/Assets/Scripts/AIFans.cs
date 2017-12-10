@@ -6,7 +6,8 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
-public class AIFans : MonoBehaviour {
+public class AIFans : MonoBehaviour
+{
 
     //GameObject neuerVC;
 
@@ -23,8 +24,9 @@ public class AIFans : MonoBehaviour {
     public float m_maxDistanceVC;
     private bool m_bVisible;
     public float m_fanSpeed;
+    private bool m_bIsChasingClothing;
 
-    public List <Transform> m_clothesList = new List<Transform>();
+    public List<Transform> m_clothesList = new List<Transform>();
 
     private Vector3 m_recentDirection;
 
@@ -33,29 +35,32 @@ public class AIFans : MonoBehaviour {
     //public GameObject VC;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         //m_target = GameObject.FindGameObjectWithTag("Player").transform;
         m_thisTransform = this.GetComponent<Transform>();
         m_thisRigidbody = this.GetComponent<Rigidbody>();
         m_navComponent = this.GetComponent<NavMeshAgent>();
         m_navComponent.speed = m_fanSpeed;
         m_bVisible = false;
+        m_bIsChasingClothing = false;
         m_recentDirection = m_kontrollStack[Random.Range(0, m_kontrollStack.Length)].transform.position;
         //Debug.Log("New Destination: " + m_recentDirection);
 
         //neuerVC = GameObject.Instantiate(VC);
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         float distance = Vector3.Distance(m_target.position, m_thisTransform.position);
         m_fanMovement = m_thisTransform.forward * m_fanSpeed;
 
         if (m_pc.m_bHasFired)
         {
             m_clothesList.Add(m_pc.m_latestClothes.transform);
-        } 
+        }
 
         if (m_bVisible)
         {
@@ -77,51 +82,60 @@ public class AIFans : MonoBehaviour {
                 //m_navComponent.acceleration = 0f;
             }
         }
-        
+
         else
         {
-            for (int i = 0; i < m_clothesList.Count; i++)
+            if (m_clothesList.Count > 0)
             {
-                if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_maxDistanceVC)
+                for (int i = 0; i < m_clothesList.Count; i++)
                 {
-                    m_target.position = m_clothesList[i].position;
-                    if (distance <= m_deathDistance)
+                    if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_maxDistanceVC)
                     {
-                        m_fanSpeed = 0.1f;
-                        m_navComponent.speed = 0.1f;
-                        m_thisRigidbody.freezeRotation = true;
+                        m_bIsChasingClothing = true;
+                        m_recentDirection = m_clothesList[i].position;
+                        if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_deathDistance)
+                        {
+                            m_fanSpeed = 0.1f;
+                            m_navComponent.speed = 0.1f;
+                            m_thisRigidbody.freezeRotation = true;
+                        }
                     }
+                }
             }
-            if (Vector3.Distance(m_recentDirection, m_thisTransform.position) <= 3)
+
+            if (!m_bIsChasingClothing)
             {
-                int rand = Random.Range(0, m_kontrollStack.Length);
-                m_recentDirection = m_kontrollStack[rand].transform.position;
-                //Debug.Log("New Destination: " + m_recentDirection);
+                if (Vector3.Distance(m_recentDirection, m_thisTransform.position) <= 3)
+                {
+                    int rand = Random.Range(0, m_kontrollStack.Length);
+                    m_recentDirection = m_kontrollStack[rand].transform.position;
+                    //Debug.Log("New Destination: " + m_recentDirection);
+                }
             }
 
             m_navComponent.SetDestination(m_recentDirection);
             m_thisRigidbody.velocity = m_fanMovement;
+
+            //Vision Cone
+
+            m_viewDirection = m_thisTransform.forward;
+            Vector3 targetVector = m_target.position - m_thisTransform.position;
+            targetVector.y = 0;
+
+            if (Vector3.Angle(targetVector, m_viewDirection) <= m_visionConeAngle && distance <= m_maxDistanceVC)
+            {
+                m_bVisible = true;
+            }
+            else
+            {
+                m_bVisible = false;
+            }
+
+            //GameObject neuerVC = GameObject.Instantiate(VC);
+            //neuerVC.transform.position = m_thisTransform.position;
+            //VC.GetComponent<Transform>().localScale = new Vector3(m_maxDistanceVC, m_maxDistanceVC, 1);
         }
-
-        
-
-        //Vision Cone
-
-        m_viewDirection = m_thisTransform.forward;
-        Vector3 targetVector = m_target.position - m_thisTransform.position;
-                targetVector.y = 0;
-
-        if (Vector3.Angle(targetVector, m_viewDirection) <= m_visionConeAngle && distance <= m_maxDistanceVC)
-        {
-            m_bVisible = true;
-        }
-        else
-        {
-            m_bVisible = false;
-        }
-
-        //GameObject neuerVC = GameObject.Instantiate(VC);
-        //neuerVC.transform.position = m_thisTransform.position;
-        //VC.GetComponent<Transform>().localScale = new Vector3(m_maxDistanceVC, m_maxDistanceVC, 1);
     }
 }
+
+
