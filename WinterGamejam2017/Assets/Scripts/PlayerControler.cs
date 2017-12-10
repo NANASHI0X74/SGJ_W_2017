@@ -39,7 +39,7 @@ public class PlayerControler : MonoBehaviour {
                 m_latestClothes = null;
 	    }
 
-        void giveClothes()
+        public void giveClothes()
         {
                 if (clothes < 5)
                 {
