@@ -439,7 +439,8 @@ MonoBehaviour:
   m_visionConeAngle: 140
   m_maxDistanceVC: 6
   m_fanSpeed: 3
-  VC: {fileID: 1230743768022852, guid: 6c34fe6735ee35940b76b5a69ae51c36, type: 2}
+  m_clothesList: []
+  m_pc: {fileID: 114204326353409220, guid: 25fd67789e1071a45b38387c27bd0fbb, type: 2}
 --- !u!136 &136076819927084146
 CapsuleCollider:
   m_ObjectHideFlags: 1
