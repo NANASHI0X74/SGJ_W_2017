@@ -20,11 +20,15 @@ public class BarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+                counter += Time.deltaTime;
+                if (counter <= m_coolDown)
+                {
+                        
+                        bar.fillAmount = counter / m_coolDown;
+                }
+                else
+                {
 
-        if (counter <= m_coolDown:)
-            bar.fillAmount = counter++ * Time.deltaTime / m_coolDown;
-        else {
-
-        }
+                }
     }
 }

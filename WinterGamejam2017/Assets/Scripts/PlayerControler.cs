@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(CameraController))]
 public class PlayerControler : MonoBehaviour {
         
-        public int clothes = 5;
+        private int clothes = 5;
         public int clothesCounter
         {
                 get
@@ -19,7 +19,7 @@ public class PlayerControler : MonoBehaviour {
         public float upwardThrowStrength = 10.0f;
         public float horizontalThrowStrength = 10.0f;
         public float kickback = 2.0f;
-        public SpriteRenderer Clothes;
+        public GameObject Clothes;
         private int floorMask;
         public float camRayLength = 500.0f;
         public float maxMoveSpeed = 100.0f;
@@ -41,8 +41,11 @@ public class PlayerControler : MonoBehaviour {
 
         void giveClothes()
         {
-                clothes++;
-                switchRightModelIn();
+                if (clothes < 5)
+                {
+                        clothes++;
+                        switchRightModelIn();
+                }
         }
 
         // Update is called once per frame
@@ -62,7 +65,7 @@ public class PlayerControler : MonoBehaviour {
         {
                 if (Input.GetButtonDown("Fire1") && clothesCounter > 0){
                         clothes--;
-                        SpriteRenderer fired = Instantiate(Clothes, transform.position + transform.forward, transform.rotation);
+                        GameObject fired = Instantiate(Clothes, transform.position + transform.forward, transform.rotation);
                         fired.GetComponent<Rigidbody>().velocity = transform.forward * horizontalThrowStrength+ Vector3.up * upwardThrowStrength;
                         fired.GetComponent<ClothesBehavior>().setDisplayedItem(5 - clothes);
                         m_latestClothes = fired;
