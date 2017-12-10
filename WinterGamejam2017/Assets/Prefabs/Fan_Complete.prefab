@@ -226,7 +226,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1414630246741040}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.5, z: 45}
+  m_LocalPosition: {x: 26.6, y: 0.5, z: 22}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4944749008695176}
@@ -437,8 +437,9 @@ MonoBehaviour:
   - {fileID: 1200248471602202, guid: b6232aa0d5b76364ab2442bda6e5e5f5, type: 2}
   m_visionConeAngle: 140
   m_maxDistanceVC: 15
-  m_fanSpeed: 4
-  m_clothesList: []
+  m_fanSpeed: 3
+  baseSpeed: 3
+  speedIncrease: 0.7
   m_pc: {fileID: 0}
 --- !u!136 &136076819927084146
 CapsuleCollider:
