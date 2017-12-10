@@ -6,7 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CameraController))]
 public class PlayerControler : MonoBehaviour {
-        
+
+        public AudioClip running;
+        public AudioClip breathing;
+        private AudioSource mAudioSource;
         private int clothes = 5;
         public int clothesCounter
         {
@@ -15,6 +18,8 @@ public class PlayerControler : MonoBehaviour {
                         return clothes;
                 }
         }
+        public bool m_bHasFired;
+        GameObject m_latestClothes;
         public Transform activePlayer;
         public float upwardThrowStrength = 10.0f;
         public float horizontalThrowStrength = 10.0f;
@@ -36,6 +41,9 @@ public class PlayerControler : MonoBehaviour {
                 floorMask = LayerMask.GetMask("Floor");
                 mRigidbody = this.GetComponent<Rigidbody>();
                 mAnimator = GetComponentInChildren<Animator>();
+                m_bHasFired = false;
+                m_latestClothes = null;
+                mAudioSource = GetComponent<AudioSource>();
 	    }
 
         public void giveClothes()
@@ -55,6 +63,14 @@ public class PlayerControler : MonoBehaviour {
 
                 // Move the player around the scene.
                 move(h, v);
+                if(h != 0.0f || v != 0.0f)
+                {
+                        mAudioSource.UnPause();
+                }
+                else
+                {
+                        mAudioSource.Pause();
+                }
                 turn();
                 shoot();
 
@@ -95,6 +111,7 @@ public class PlayerControler : MonoBehaviour {
                 // Move the player to it's current position plus the movement.
                 mRigidbody.MovePosition(transform.position + movement);
                 activePlayer.GetComponentInChildren<Animator>().SetFloat("Speed", movement.magnitude);
+
         }
 
         void turn()
