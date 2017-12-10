@@ -22,5 +22,6 @@ public class FansSpawn : MonoBehaviour {
     {
         fanW.transform.position = this.transform.position + offset;
         GameObject neuerFan = GameObject.Instantiate(fanW);
+        neuerFan.transform.position = fanW.transform.position;
     }
 }

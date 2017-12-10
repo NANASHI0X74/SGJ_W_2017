@@ -7,6 +7,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody))]
 public class AIFans : MonoBehaviour {
 
+    //GameObject neuerVC;
+
     public float m_deathDistance;
     private Transform m_thisTransform;
     private Rigidbody m_thisRigidbody;
@@ -21,9 +23,13 @@ public class AIFans : MonoBehaviour {
     private bool m_bVisible;
     public float m_fanSpeed;
 
+    public List <Transform> m_clothesList = new List<Transform>();
+
     private Vector3 m_recentDirection;
 
-    public GameObject VC;
+    public PlayerControler m_pc;
+
+    //public GameObject VC;
 
     // Use this for initialization
     void Start () {
@@ -36,12 +42,19 @@ public class AIFans : MonoBehaviour {
         m_recentDirection = m_kontrollStack[Random.Range(0, m_kontrollStack.Length)].transform.position;
         Debug.Log("New Destination: " + m_recentDirection);
 
+        //neuerVC = GameObject.Instantiate(VC);
+
     }
 	
 	// Update is called once per frame
 	void Update () {
         float distance = Vector3.Distance(m_target.position, m_thisTransform.position);
         m_fanMovement = m_thisTransform.forward * m_fanSpeed;
+
+        if (m_pc.m_bHasFired)
+        {
+            m_clothesList.Add(m_pc.m_latestClothes.transform);
+        } 
 
         if (m_bVisible)
         {
@@ -62,8 +75,16 @@ public class AIFans : MonoBehaviour {
                 //m_navComponent.acceleration = 0f;
             }
         }
+        
         else
         {
+            for (int i = 0; i < m_clothesList.Count; i++)
+            {
+                if (Vector3.Distance(m_clothesList[i].position, m_thisTransform.position) <= m_maxDistanceVC)
+                {
+                    m_target.position = m_clothesList[i].position;
+                }
+            }
             if (Vector3.Distance(m_recentDirection, m_thisTransform.position) <= 3)
             {
                 int rand = Random.Range(0, m_kontrollStack.Length);
@@ -89,10 +110,11 @@ public class AIFans : MonoBehaviour {
         
 
         //Vision Cone
+
         m_viewDirection = m_thisTransform.forward;
         Vector3 targetVector = m_target.position - m_thisTransform.position;
                 targetVector.y = 0;
-       
+
         if (Vector3.Angle(targetVector, m_viewDirection) <= m_visionConeAngle && distance <= m_maxDistanceVC)
         {
             m_bVisible = true;
@@ -102,6 +124,8 @@ public class AIFans : MonoBehaviour {
             m_bVisible = false;
         }
 
-        VC.GetComponent<Transform>().localScale = new Vector3(m_maxDistanceVC, m_maxDistanceVC, 1);
+        //GameObject neuerVC = GameObject.Instantiate(VC);
+        //neuerVC.transform.position = m_thisTransform.position;
+        //VC.GetComponent<Transform>().localScale = new Vector3(m_maxDistanceVC, m_maxDistanceVC, 1);
     }
 }

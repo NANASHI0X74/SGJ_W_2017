@@ -25,12 +25,16 @@ public class PlayerControler : MonoBehaviour {
         private Rigidbody mRigidbody;
         private Animator mAnimator;
         private CameraController camController;
+        public bool m_bHasFired;
+        public GameObject m_latestClothes;
 	    // Use this for initialization
 	    void Start () {
                 camController = GetComponent<CameraController>();
                 floorMask = LayerMask.GetMask("Floor");
                 mRigidbody = this.GetComponent<Rigidbody>();
                 mAnimator = GetComponentInChildren<Animator>();
+                m_bHasFired = false;
+                m_latestClothes = null;
 	    }
 
         // Update is called once per frame
@@ -49,10 +53,12 @@ public class PlayerControler : MonoBehaviour {
         void shoot()
         {
                 if (Input.GetButtonDown("Fire1") && clothesCounter > 0){
+                        m_bHasFired = true;
                         clothes--;
                         GameObject fired = Instantiate(Clothes, transform.position + transform.forward, transform.rotation);
                         fired.GetComponent<Rigidbody>().velocity = transform.forward * horizontalThrowStrength+ Vector3.up * upwardThrowStrength;
                         fired.GetComponent<ClothesBehavior>().setDisplayedItem(5 - clothes);
+                        m_latestClothes = fired;
 
                         mRigidbody.MovePosition(transform.position -transform.forward * kickback) ;
                 }
