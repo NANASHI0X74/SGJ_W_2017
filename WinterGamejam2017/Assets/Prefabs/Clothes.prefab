@@ -35,8 +35,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4781034305157904}
-  - component: {fileID: 114068329155370722}
-  - component: {fileID: 54318305146047540}
+  - component: {fileID: 33830029390861304}
+  - component: {fileID: 114310636510355610}
+  - component: {fileID: 54019369011490316}
   - component: {fileID: 64279654630312838}
   m_Layer: 9
   m_Name: Clothes
@@ -64,15 +65,22 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1718715103971524}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: 202.3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4538002433423394}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54318305146047540
+--- !u!33 &33830029390861304
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1718715103971524}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54019369011490316
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -89,11 +97,11 @@ Rigidbody:
   m_CollisionDetection: 0
 --- !u!64 &64279654630312838
 MeshCollider:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1718715103971524}
-  m_Material: {fileID: 13400000, guid: 36245ee03830e89458c815729a7e6f9e, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -101,7 +109,7 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114068329155370722
+--- !u!114 &114310636510355610
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -113,11 +121,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disappearTime: 15
-  sprite1: {fileID: 21300000, guid: 9015b6a1c72f454419b581bcf0054a2e, type: 3}
-  sprite2: {fileID: 21300000, guid: e50ddad53e7edec46936d81f16d9e106, type: 3}
-  sprite3: {fileID: 21300000, guid: 69d38c7e0191ecb4bba3f683418af48a, type: 3}
-  sprite4: {fileID: 21300000, guid: 3ad3060920c22814b9d002607111382c, type: 3}
-  sprite5: {fileID: 21300000, guid: 6a2ace29f40262a43972529d81e9fcff, type: 3}
+  sprite1: {fileID: 21300000, guid: 7953045ffe497a34f8b708060f75977b, type: 3}
+  sprite2: {fileID: 21300000, guid: 5be9792c2af11bd4d92dd14bc577beda, type: 3}
+  sprite3: {fileID: 21300000, guid: 8192678cced30e74299c4856772f5c7c, type: 3}
+  sprite4: {fileID: 21300000, guid: 918518e42e34298428619d75d5168c67, type: 3}
+  sprite5: {fileID: 21300000, guid: 8dd19400741170c42bb8997ea46bd6a5, type: 3}
 --- !u!212 &212436191013155124
 SpriteRenderer:
   m_ObjectHideFlags: 1

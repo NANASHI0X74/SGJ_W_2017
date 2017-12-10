@@ -435,12 +435,12 @@ MonoBehaviour:
   - {fileID: 1204899878287386, guid: b6232aa0d5b76364ab2442bda6e5e5f5, type: 2}
   - {fileID: 1149112266917518, guid: b6232aa0d5b76364ab2442bda6e5e5f5, type: 2}
   - {fileID: 1200248471602202, guid: b6232aa0d5b76364ab2442bda6e5e5f5, type: 2}
-  m_target: {fileID: 0}
   m_visionConeAngle: 140
   m_maxDistanceVC: 15
   m_fanSpeed: 4
-  m_clothesList: []
-  m_pc: {fileID: 114204326353409220, guid: 25fd67789e1071a45b38387c27bd0fbb, type: 2}
+  baseSpeed: 4
+  speedIncrease: 0.7
+  m_pc: {fileID: 0}
 --- !u!136 &136076819927084146
 CapsuleCollider:
   m_ObjectHideFlags: 1
