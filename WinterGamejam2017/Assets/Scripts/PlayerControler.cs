@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ public class PlayerControler : MonoBehaviour {
                         return clothes;
                 }
         }
-        public GameObject activePlayer;
+        public Transform activePlayer;
         public float upwardThrowStrength = 10.0f;
         public float horizontalThrowStrength = 10.0f;
         public float kickback = 2.0f;
@@ -38,9 +39,10 @@ public class PlayerControler : MonoBehaviour {
                 m_latestClothes = null;
 	    }
 
-        void refillClothes()
+        void giveClothes()
         {
-                clothes = 5;
+                clothes++;
+                switchRightModelIn();
         }
 
         // Update is called once per frame
@@ -67,7 +69,17 @@ public class PlayerControler : MonoBehaviour {
                         m_bHasFired = true;
 
                         mRigidbody.MovePosition(transform.position -transform.forward * kickback) ;
+                        switchRightModelIn();
                 }
+        }
+
+        private void switchRightModelIn()
+        {
+                activePlayer.gameObject.SetActive(false);
+
+                activePlayer = transform.GetChild(clothes == 0 ? 4 : 5 - clothes);
+
+                activePlayer.gameObject.SetActive(true);
         }
 
         void move(float h, float v)
@@ -79,7 +91,7 @@ public class PlayerControler : MonoBehaviour {
 
                 // Move the player to it's current position plus the movement.
                 mRigidbody.MovePosition(transform.position + movement);
-                mAnimator.SetFloat("Speed", movement.magnitude);
+                activePlayer.GetComponentInChildren<Animator>().SetFloat("Speed", movement.magnitude);
         }
 
         void turn()
