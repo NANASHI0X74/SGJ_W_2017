@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenese/test.unity
     guid: cf52a8148631e0c41a624610fe5f60ff
   - enabled: 1
+    path: Assets/Scenese/TitleScreen.unity
+    guid: 4ea3d0ed4abe3404fb4831cec3842dbe
+  - enabled: 1
     path: Assets/Scenese/Master Scene.unity
     guid: 1a565219e6fd0594598fd424a614b78a
   - enabled: 1

@@ -22,4 +22,9 @@ public class Highscore : MonoBehaviour {
        m_text = m_text.GetComponent<Text>();
        m_text.text = "Highscore: " + score;
     }
+
+    public int getHighscore()
+    {
+        return m_highscore;
+    }
 }

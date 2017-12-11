@@ -15,6 +15,7 @@ public class ShopBehavior : MonoBehaviour {
         private float timerGiveDelay = 0;
         public float giveDelay = 3.0f;
         public PlayerControler player;
+        public CooldownBar m_cooldownBar;
 	// Use this for initialization
 	void Start () {
 		
@@ -43,6 +44,7 @@ public class ShopBehavior : MonoBehaviour {
         {
                 if (Other.gameObject.tag == "Player" && providing) {
                         timerActive = active;
+                        m_cooldownBar.coolingDown = true;
                         player = Other.GetComponent<PlayerControler>();
                         player.giveClothes();
                         StartCoroutine(giveClothes());
@@ -68,6 +70,6 @@ public class ShopBehavior : MonoBehaviour {
         {
                 yield return new WaitForSeconds(3.0f);
                 player.giveClothes();
-                StartCoroutine(giveClothes());
+                //StartCoroutine(giveClothes());
         }
 }

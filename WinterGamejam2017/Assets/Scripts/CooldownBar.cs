@@ -7,7 +7,7 @@ public class CooldownBar : MonoBehaviour
 {
 
     public Image bar;
-    public float m_coolDown = 30.0f;
+    public float m_coolDown = 120.0f;
     public float counter = 0;
 
 
@@ -16,9 +16,10 @@ public class CooldownBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        counter += Time.deltaTime;
+        counter += Time.deltaTime / 120.0f;
         if (counter <= 1.0f && coolingDown)
         {
+            Debug.Log(counter);
             bar.fillAmount = counter;
         }
         else

@@ -18,7 +18,7 @@ public class AttractionController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         clouthesNumber = m_pc.clothesCounter;
-        filler.fillAmount = (float) clouthesNumber / 5.0f;
-        Kleidung.fillAmount = 1.0f - (0.2f * clouthesNumber);
+        filler.fillAmount = 1.0f - ((float) clouthesNumber / 5.0f);
+        Kleidung.fillAmount = 0.2f * clouthesNumber;
     }
 }
